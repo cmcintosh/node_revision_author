@@ -8,8 +8,6 @@ function node_revision_author_form_alter(&$form, $form_state, $form_id) {
     $form['workflow']['node_options']['#options']['node_revision_author'] = t('Set Author to Node Revision Editor');
 
     $node_option = variable_get('node_options_appointment_request', FALSE);
-    dsm($node_option);
-    dsm( array_search('node_revision_author', $node_option) );
   }
 
 }
