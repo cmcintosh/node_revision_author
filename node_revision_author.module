@@ -1,0 +1,28 @@
+<?php
+
+/**
+* Implements hook_form_FORM_ID_alter
+*/
+function node_revision_author_form_alter(&$form, $form_state, $form_id) {
+  if($form_id === 'node_type_form') {
+    $form['workflow']['node_options']['#options']['node_revision_author'] = t('Set Author to Node Revision Editor');
+
+    $node_option = variable_get('node_options_appointment_request', FALSE);
+    dsm($node_option);
+    dsm( array_search('node_revision_author', $node_option) );
+  }
+
+}
+
+/**
+* Implements hook_entity_update
+*/
+function node_revision_author_entity_presave($entity, $type) {
+  if( $type === 'node'){
+    $options = variable_get( 'node_options_' . $entity->type, array() );
+    if( array_search('node_revision_author', $options) && $entity->revision == 1) {
+      $entity->uid = $entity->revision_uid;
+    }
+  }
+
+}

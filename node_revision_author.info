@@ -1,0 +1,4 @@
+name = Node Revision Author
+description = "Change the author of a node to the user creating a new revision."
+package = Wembassy (contrib)
+core = 7.x
